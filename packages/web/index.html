@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CodeTracr — code lineage explorer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>CodeTracr</h1>
+      <label>
+        Max depth
+        <input id="depth" type="number" min="0" placeholder="0 = unlimited" value="20" title="How many call hops to traverse from the selected symbol (0 = unlimited)" />
+      </label>
+      <label>
+        View
+        <select id="viewMode" title="Lineage = blast-radius graph · Flow = linear chain · Sequence = source-ordered call diagram">
+          <option value="clustered">Lineage</option>
+          <option value="path">Flow (linear)</option>
+          <option value="sequence">Sequence</option>
+        </select>
+      </label>
+      <label>
+        Concern
+        <select id="concernFilter" title="Keep only paths relevant to this architectural concern">
+          <option value="all">All relationships</option>
+          <option value="http">HTTP APIs</option>
+          <option value="writes">Database writes</option>
+          <option value="reads">Database reads</option>
+          <option value="kafka">Kafka</option>
+        </select>
+      </label>
+      <label>
+        Direction
+        <select id="directionFilter" title="Limit the graph relative to the selected symbol">
+          <option value="both">Upstream + downstream</option>
+          <option value="upstream">Upstream only</option>
+          <option value="downstream">Downstream only</option>
+        </select>
+      </label>
+      <label class="check-control" title="Render only the path selected in the upstream or downstream list">
+        <input id="isolatePath" type="checkbox" />
+        Isolate selected path
+      </label>
+      <label class="check-control" title="Hide non-surface code nodes with only one visible relationship">
+        <input id="hideLeafHelpers" type="checkbox" />
+        Hide leaf helpers
+      </label>
+      <label>
+        Symbol
+        <input id="query" list="symbolList" placeholder="prepareOrder" autocomplete="off" />
+        <datalist id="symbolList"></datalist>
+      </label>
+      <label>
+        Edge
+        <input id="edgeQuery" list="edgeListPicker" placeholder="caller → callee" autocomplete="off" title="Edges from the loaded lineage subgraph" disabled />
+        <datalist id="edgeListPicker"></datalist>
+      </label>
+      <button id="searchBtn">Search</button>
+      <button id="fitBtn" type="button">Fit graph</button>
+      <button id="showAllBtn" type="button" aria-pressed="false" title="Toggle full graph vs focused trace path">Show all</button>
+    </header>
+
+    <main>
+      <aside id="sidebar">
+        <section id="results"></section>
+        <section id="detail">
+          <h2>Selected symbol</h2>
+          <div id="nodeCard" class="node-card" hidden></div>
+          <div id="nodeActions" class="node-actions" hidden>
+            <button id="traceFromBtn" type="button" title="Re-run lineage with this symbol as the target">Trace from here</button>
+            <a id="openEditorLink" href="#" target="_blank" rel="noopener noreferrer">Open in editor</a>
+          </div>
+          <pre id="nodeMeta">Pick a symbol to trace callers and callees</pre>
+
+          <section id="blastRadius" class="blast-radius" hidden>
+            <h3>Blast radius</h3>
+            <p class="hint">Surfaces that may be affected by changing this symbol (from CodeTracr semantic nodes on the lineage).</p>
+            <div id="blastEndpoints" class="blast-section"></div>
+            <div id="blastTables" class="blast-section"></div>
+            <div id="blastKafka" class="blast-section"></div>
+            <div id="blastExternal" class="blast-section"></div>
+          </section>
+
+          <h3>Upstream paths</h3>
+          <p class="hint">Entry paths into the selected symbol. Click a row to highlight that path on the graph.</p>
+          <ul id="upstreamTraces" class="trace-list"></ul>
+
+          <h3>Downstream paths</h3>
+          <p class="hint">Outgoing paths from the selected symbol. Click a row to highlight it in gold on the graph.</p>
+          <ul id="downstreamTraces" class="trace-list"></ul>
+
+          <h3>Graph nodes</h3>
+          <p class="hint">All symbols in the lineage subgraph (click to focus).</p>
+          <div id="nodeList" class="data-table-wrap"></div>
+
+          <h3>Graph edges</h3>
+          <p class="hint">Call relationships in the lineage subgraph.</p>
+          <div id="edgeList" class="data-table-wrap"></div>
+        </section>
+      </aside>
+
+      <section id="graphPanel">
+        <div id="graphToolbar">
+          <strong>Lineage graph</strong>
+          <span id="graphStats">Search for a symbol to render its lineage</span>
+          <div id="kindLegend" class="kind-legend" hidden></div>
+          <button id="exportPdfBtn" type="button" title="Download a high-resolution PDF of the full graph, not the current zoom" disabled>Export PDF</button>
+        </div>
+        <div id="graphHost"></div>
+        <p class="hint graph-hint">Click a trace row to select a path · use “Isolate selected path” for large graphs · hover an edge for its relation</p>
+      </section>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

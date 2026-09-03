@@ -1,0 +1,77 @@
+{
+  "requiredNodes": [
+    {
+      "id": "interface:src/order-repository.ts#OrderRepository",
+      "type": "INTERFACE"
+    },
+    {
+      "id": "method:src/order-repository.ts#OrderRepository.save",
+      "type": "METHOD"
+    },
+    {
+      "id": "class:src/order-service.ts#OrderService",
+      "type": "CLASS"
+    },
+    {
+      "id": "property:src/order-service.ts#OrderService.repository",
+      "type": "CLASS_PROPERTY"
+    },
+    {
+      "id": "class:src/postgres-order-repository.ts#PostgresOrderRepository",
+      "type": "CLASS"
+    },
+    {
+      "id": "class:src/in-memory-order-repository.ts#InMemoryOrderRepository",
+      "type": "CLASS"
+    }
+  ],
+  "requiredEdges": [
+    {
+      "from": "class:src/order-service.ts#OrderService",
+      "to": "interface:src/order-repository.ts#OrderRepository",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "from": "class:src/postgres-order-repository.ts#PostgresOrderRepository",
+      "to": "interface:src/order-repository.ts#OrderRepository",
+      "type": "IMPLEMENTS"
+    },
+    {
+      "from": "class:src/in-memory-order-repository.ts#InMemoryOrderRepository",
+      "to": "interface:src/order-repository.ts#OrderRepository",
+      "type": "IMPLEMENTS"
+    },
+    {
+      "from": "method:src/order-service.ts#OrderService.create",
+      "to": "method:src/order-repository.ts#OrderRepository.save",
+      "type": "CALLS"
+    },
+    {
+      "from": "property:src/order-service.ts#OrderService.repository",
+      "to": "class:src/postgres-order-repository.ts#PostgresOrderRepository",
+      "type": "INJECTED_WITH"
+    },
+    {
+      "from": "method:src/order-repository.ts#OrderRepository.save",
+      "to": "method:src/postgres-order-repository.ts#PostgresOrderRepository.save",
+      "type": "RESOLVES_TO"
+    }
+  ],
+  "forbiddenEdges": [
+    {
+      "from": "property:src/order-service.ts#OrderService.repository",
+      "to": "class:src/in-memory-order-repository.ts#InMemoryOrderRepository",
+      "type": "INJECTED_WITH"
+    },
+    {
+      "from": "method:src/order-repository.ts#OrderRepository.save",
+      "to": "method:src/in-memory-order-repository.ts#InMemoryOrderRepository.save",
+      "type": "RESOLVES_TO"
+    },
+    {
+      "from": "method:src/order-service.ts#OrderService.create",
+      "to": "method:src/postgres-order-repository.ts#PostgresOrderRepository.save",
+      "type": "CALLS"
+    }
+  ]
+}

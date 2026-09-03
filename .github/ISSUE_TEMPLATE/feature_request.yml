@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest a change after the current beta capabilities
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        CodeTracr is in public beta. Requests that add new framework analyzers or backends
+        may be deferred. Do not propose reintroducing Graphify or other external graph engines.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is hard or missing with the current analyzer or UI?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should CodeTracr do instead? Prefer fail-closed analysis over guessed edges.
+    validations:
+      required: true

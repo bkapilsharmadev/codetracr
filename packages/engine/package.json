@@ -1,0 +1,33 @@
+{
+  "name": "@codetracr/engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/types.ts"
+  },
+  "scripts": {
+    "analyze": "node --experimental-strip-types src/analyze.ts",
+    "build": "node --experimental-strip-types src/run.ts",
+    "build:di": "node --experimental-strip-types src/run-interface-di.ts",
+    "build:factory": "node --experimental-strip-types src/run-factory.ts",
+    "build:kafka": "node --experimental-strip-types src/run-kafka.ts",
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "generate": "npm run build && npm run build:di && npm run build:factory && npm run build:kafka",
+    "poc": "npm run generate && npm test",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "tree-sitter": "^0.21.1",
+    "tree-sitter-javascript": "^0.23.1",
+    "tree-sitter-typescript": "^0.23.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "typescript": "^5.7.3"
+  },
+  "license": "MIT"
+}

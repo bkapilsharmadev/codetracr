@@ -1,0 +1,51 @@
+{
+  "requiredNodes": [
+    {
+      "id": "topic:orders.created",
+      "type": "EVENT_TOPIC"
+    },
+    {
+      "id": "topic:payments.created",
+      "type": "EVENT_TOPIC"
+    }
+  ],
+  "requiredEdges": [
+    {
+      "from": "method:src/publisher.ts#OrderEventPublisher.publish",
+      "to": "topic:orders.created",
+      "type": "PUBLISHES"
+    },
+    {
+      "from": "topic:orders.created",
+      "to": "method:src/order-consumer.ts#OrderCreatedConsumer.handle",
+      "type": "CONSUMED_BY"
+    },
+    {
+      "from": "topic:payments.created",
+      "to": "method:src/payment-consumer.ts#PaymentCreatedConsumer.handle",
+      "type": "CONSUMED_BY"
+    }
+  ],
+  "forbiddenEdges": [
+    {
+      "from": "method:src/unrelated.ts#UnrelatedPublisher.publish",
+      "to": "topic:orders.created",
+      "type": "PUBLISHES"
+    },
+    {
+      "from": "method:src/publisher.ts#OrderEventPublisher.publish",
+      "to": "topic:payments.created",
+      "type": "PUBLISHES"
+    },
+    {
+      "from": "topic:orders.created",
+      "to": "method:src/payment-consumer.ts#PaymentCreatedConsumer.handle",
+      "type": "CONSUMED_BY"
+    },
+    {
+      "from": "topic:payments.created",
+      "to": "method:src/order-consumer.ts#OrderCreatedConsumer.handle",
+      "type": "CONSUMED_BY"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "requiredNodes": [
+    {
+      "id": "http:POST:/api/v1/orders",
+      "type": "HTTP_ENDPOINT",
+      "name": "POST /api/v1/orders"
+    },
+    {
+      "id": "method:src/controller.ts#OrderController.create",
+      "type": "METHOD",
+      "name": "OrderController.create"
+    },
+    {
+      "id": "method:src/service.ts#OrderService.create",
+      "type": "METHOD",
+      "name": "OrderService.create"
+    },
+    {
+      "id": "method:src/repository.ts#OrderRepository.save",
+      "type": "METHOD",
+      "name": "OrderRepository.save"
+    },
+    {
+      "id": "table:orders",
+      "type": "DATABASE_TABLE",
+      "name": "orders"
+    }
+  ],
+  "requiredEdges": [
+    {
+      "from": "http:POST:/api/v1/orders",
+      "to": "method:src/controller.ts#OrderController.create",
+      "type": "HANDLES"
+    },
+    {
+      "from": "method:src/controller.ts#OrderController.create",
+      "to": "method:src/service.ts#OrderService.create",
+      "type": "CALLS"
+    },
+    {
+      "from": "method:src/service.ts#OrderService.create",
+      "to": "method:src/repository.ts#OrderRepository.save",
+      "type": "CALLS"
+    },
+    {
+      "from": "method:src/repository.ts#OrderRepository.save",
+      "to": "table:orders",
+      "type": "WRITES"
+    }
+  ],
+  "forbiddenEdges": [
+    {
+      "from": "method:src/local-utility.ts#LocalUtility.create",
+      "to": "method:src/controller.ts#OrderController.create"
+    },
+    {
+      "from": "method:src/local-utility.ts#LocalUtility.create",
+      "to": "method:src/service.ts#OrderService.create"
+    },
+    {
+      "from": "method:src/local-utility.ts#LocalUtility.create",
+      "to": "method:src/repository.ts#OrderRepository.save"
+    },
+    {
+      "from": "method:src/controller.ts#OrderController.create",
+      "to": "method:src/local-utility.ts#LocalUtility.create"
+    },
+    {
+      "from": "method:src/service.ts#OrderService.create",
+      "to": "method:src/local-utility.ts#LocalUtility.create"
+    }
+  ]
+}

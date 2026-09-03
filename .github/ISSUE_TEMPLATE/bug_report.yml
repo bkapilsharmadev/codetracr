@@ -1,0 +1,38 @@
+name: Bug report
+description: Something in CodeTracr does not match expected, documented behavior
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Security issues belong in GitHub private vulnerability reporting (see SECURITY.md), not a public bug.
+        CodeTracr is beta static analysis. Unresolved relationships are expected when the analyzer cannot prove them.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you saw.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. npm run analyze -- --source ...
+        2. Search for ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Git commit, tag, or "working tree".
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra context
+      description: OS, Node version, fixture vs your own tree. Do not paste secrets or private source.

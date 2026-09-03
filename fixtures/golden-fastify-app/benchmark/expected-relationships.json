@@ -1,0 +1,331 @@
+{
+  "required": [
+    {
+      "source": "POST /api/v1/orders",
+      "relationship": "calls",
+      "target": "OrderController.create"
+    },
+    {
+      "source": "GET /api/v1/orders/:id",
+      "relationship": "calls",
+      "target": "OrderController.getById"
+    },
+    {
+      "source": "GET /api/v1/orders-count",
+      "relationship": "calls",
+      "target": "OrderController.getOrderCount"
+    },
+    {
+      "source": "PATCH /api/v1/orders/:id",
+      "relationship": "calls",
+      "target": "OrderController.update"
+    },
+    {
+      "source": "DELETE /api/v1/orders/:id",
+      "relationship": "calls",
+      "target": "OrderController.delete"
+    },
+    {
+      "source": "POST /api/v1/orders",
+      "relationship": "uses_schema",
+      "target": "CreateOrderSchema"
+    },
+    {
+      "source": "OrderController.create",
+      "relationship": "calls",
+      "target": "OrderService.create"
+    },
+    {
+      "source": "OrderController.getById",
+      "relationship": "calls",
+      "target": "OrderService.getById"
+    },
+    {
+      "source": "OrderController.getOrderCount",
+      "relationship": "calls",
+      "target": "OrderService.getOrderCount"
+    },
+    {
+      "source": "OrderController.update",
+      "relationship": "calls",
+      "target": "OrderService.update"
+    },
+    {
+      "source": "OrderController.delete",
+      "relationship": "calls",
+      "target": "OrderService.delete"
+    },
+    {
+      "source": "OrderService.create",
+      "relationship": "calls",
+      "target": "OrderService.prepareOrder"
+    },
+    {
+      "source": "OrderService.getById",
+      "relationship": "calls",
+      "target": "OrderService.prepareOrder"
+    },
+    {
+      "source": "OrderService.getOrderCount",
+      "relationship": "calls",
+      "target": "OrderService.prepareOrder"
+    },
+    {
+      "source": "OrderService.update",
+      "relationship": "calls",
+      "target": "OrderService.prepareOrder"
+    },
+    {
+      "source": "OrderService.delete",
+      "relationship": "calls",
+      "target": "OrderService.prepareOrder"
+    },
+    {
+      "source": "OrderService.create",
+      "relationship": "calls",
+      "target": "OrderService.validateOrder"
+    },
+    {
+      "source": "OrderService.update",
+      "relationship": "calls",
+      "target": "OrderService.validateOrder"
+    },
+    {
+      "source": "OrderService.delete",
+      "relationship": "calls",
+      "target": "OrderService.validateOrder"
+    },
+    {
+      "source": "OrderService.create",
+      "relationship": "calls",
+      "target": "OrderRepository.save"
+    },
+    {
+      "source": "OrderService.getById",
+      "relationship": "calls",
+      "target": "OrderRepository.findById"
+    },
+    {
+      "source": "OrderService.update",
+      "relationship": "calls",
+      "target": "OrderRepository.update"
+    },
+    {
+      "source": "OrderService.delete",
+      "relationship": "calls",
+      "target": "OrderRepository.delete"
+    },
+    {
+      "source": "OrderRepository.save",
+      "relationship": "implemented_by",
+      "target": "PostgresOrderRepository.save"
+    },
+    {
+      "source": "OrderRepository.findById",
+      "relationship": "implemented_by",
+      "target": "PostgresOrderRepository.findById"
+    },
+    {
+      "source": "OrderRepository.update",
+      "relationship": "implemented_by",
+      "target": "PostgresOrderRepository.update"
+    },
+    {
+      "source": "OrderRepository.delete",
+      "relationship": "implemented_by",
+      "target": "PostgresOrderRepository.delete"
+    },
+    {
+      "source": "PostgresOrderRepository.save",
+      "relationship": "accesses_table",
+      "target": "orders"
+    },
+    {
+      "source": "PostgresOrderRepository.findById",
+      "relationship": "accesses_table",
+      "target": "orders"
+    },
+    {
+      "source": "PostgresOrderRepository.update",
+      "relationship": "accesses_table",
+      "target": "orders"
+    },
+    {
+      "source": "PostgresOrderRepository.delete",
+      "relationship": "accesses_table",
+      "target": "orders"
+    },
+    {
+      "source": "OrderService.getOrderCount",
+      "relationship": "calls",
+      "target": "OrderQueryHelper.countAll"
+    },
+    {
+      "source": "OrderService.getStatusReport",
+      "relationship": "calls",
+      "target": "OrderQueryHelper.summarizeByStatus"
+    },
+    {
+      "source": "OrderService.getRevenueReport",
+      "relationship": "calls",
+      "target": "OrderQueryHelper.revenueSummary"
+    },
+    {
+      "source": "OrderQueryHelper.countAll",
+      "relationship": "accesses_table",
+      "target": "orders"
+    },
+    {
+      "source": "OrderQueryHelper.summarizeByStatus",
+      "relationship": "accesses_table",
+      "target": "orders"
+    },
+    {
+      "source": "OrderQueryHelper.revenueSummary",
+      "relationship": "accesses_table",
+      "target": "orders"
+    },
+    {
+      "source": "POST /api/v1/admin/orders/bulk-archive",
+      "relationship": "calls",
+      "target": "AdminOrderController.bulkArchive"
+    },
+    {
+      "source": "POST /api/v1/admin/orders/:id/force-cancel",
+      "relationship": "calls",
+      "target": "AdminOrderController.forceCancel"
+    },
+    {
+      "source": "PATCH /api/v1/admin/orders/:id",
+      "relationship": "calls",
+      "target": "AdminOrderController.update"
+    },
+    {
+      "source": "PATCH /api/v1/admin/orders/:id",
+      "relationship": "uses_schema",
+      "target": "UpdateOrderSchema"
+    },
+    {
+      "source": "PATCH /api/v1/orders/:id",
+      "relationship": "uses_schema",
+      "target": "UpdateOrderSchema"
+    },
+    {
+      "source": "GET /api/v1/reports/orders/summary",
+      "relationship": "calls",
+      "target": "ReportOrderController.getSummary"
+    },
+    {
+      "source": "GET /api/v1/reports/orders/revenue",
+      "relationship": "calls",
+      "target": "ReportOrderController.getRevenue"
+    },
+    {
+      "source": "OrderService.bulkArchive",
+      "relationship": "calls",
+      "target": "OrderRepository.bulkSetStatus"
+    },
+    {
+      "source": "OrderRepository.bulkSetStatus",
+      "relationship": "implemented_by",
+      "target": "PostgresOrderRepository.bulkSetStatus"
+    },
+    {
+      "source": "PostgresOrderRepository.bulkSetStatus",
+      "relationship": "accesses_table",
+      "target": "orders"
+    },
+    {
+      "source": "BillingService.chargeOrder",
+      "relationship": "calls",
+      "target": "OrderRepository.findById"
+    },
+    {
+      "source": "OrderService.create",
+      "relationship": "calls",
+      "target": "EventPublisher.publishOrderCreated"
+    },
+    {
+      "source": "OrderService.update",
+      "relationship": "calls",
+      "target": "EventPublisher.publishOrderUpdated"
+    },
+    {
+      "source": "OrderService.delete",
+      "relationship": "calls",
+      "target": "EventPublisher.publishOrderDeleted"
+    },
+    {
+      "source": "EventPublisher.publishOrderCreated",
+      "relationship": "implemented_by",
+      "target": "KafkaOrderEventPublisher.publishOrderCreated"
+    },
+    {
+      "source": "EventPublisher.publishOrderUpdated",
+      "relationship": "implemented_by",
+      "target": "KafkaOrderEventPublisher.publishOrderUpdated"
+    },
+    {
+      "source": "EventPublisher.publishOrderDeleted",
+      "relationship": "implemented_by",
+      "target": "KafkaOrderEventPublisher.publishOrderDeleted"
+    },
+    {
+      "source": "KafkaOrderEventPublisher.publishOrderCreated",
+      "relationship": "publishes_to",
+      "target": "order.created"
+    },
+    {
+      "source": "KafkaOrderEventPublisher.publishOrderUpdated",
+      "relationship": "publishes_to",
+      "target": "order.updated"
+    },
+    {
+      "source": "KafkaOrderEventPublisher.publishOrderDeleted",
+      "relationship": "publishes_to",
+      "target": "order.deleted"
+    },
+    {
+      "source": "order.created",
+      "relationship": "consumed_by",
+      "target": "KafkaOrderEventConsumer"
+    },
+    {
+      "source": "KafkaOrderEventConsumer",
+      "relationship": "callback_calls",
+      "target": "BillingService.handleOrderCreated"
+    },
+    {
+      "source": "PaymentGateway.charge",
+      "relationship": "calls_external_api",
+      "target": "https://payments.example.com/v1/charges"
+    }
+  ],
+  "forbidden": [
+    {
+      "source": "OrderController.create",
+      "relationship": "calls",
+      "target": "LocalUtility.send"
+    },
+    {
+      "source": "KafkaOrderEventPublisher.publishOrderCreated",
+      "relationship": "calls",
+      "target": "LocalUtility.send"
+    },
+    {
+      "source": "BillingOrderCreatedConsumer.start",
+      "relationship": "calls",
+      "target": "LocalUtility.subscribe"
+    },
+    {
+      "source": "OrderService.getById",
+      "relationship": "calls",
+      "target": "OrderService.validateOrder"
+    },
+    {
+      "source": "OrderService.getOrderCount",
+      "relationship": "calls",
+      "target": "OrderService.validateOrder"
+    }
+  ]
+}

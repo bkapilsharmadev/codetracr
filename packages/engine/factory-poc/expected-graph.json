@@ -1,0 +1,67 @@
+{
+  "requiredEdges": [
+    {
+      "from": "method:src/services.ts#StaticOrderService.create",
+      "to": "method:src/order-repository.ts#OrderRepository.save",
+      "type": "CALLS",
+      "certainty": "DEFINITE"
+    },
+    {
+      "from": "method:src/services.ts#StaticOrderService.create",
+      "to": "method:src/repositories.ts#PostgresOrderRepository.save",
+      "type": "RESOLVES_TO",
+      "certainty": "DEFINITE"
+    },
+    {
+      "from": "property:src/services.ts#StaticOrderService.repository",
+      "to": "class:src/repositories.ts#PostgresOrderRepository",
+      "type": "INJECTED_WITH",
+      "certainty": "DEFINITE"
+    },
+    {
+      "from": "method:src/services.ts#DynamicOrderService.create",
+      "to": "method:src/order-repository.ts#OrderRepository.save",
+      "type": "CALLS",
+      "certainty": "DEFINITE"
+    },
+    {
+      "from": "method:src/services.ts#DynamicOrderService.create",
+      "to": "method:src/repositories.ts#PostgresOrderRepository.save",
+      "type": "POSSIBLE_RESOLUTION",
+      "certainty": "POSSIBLE"
+    },
+    {
+      "from": "method:src/services.ts#DynamicOrderService.create",
+      "to": "method:src/repositories.ts#InMemoryOrderRepository.save",
+      "type": "POSSIBLE_RESOLUTION",
+      "certainty": "POSSIBLE"
+    }
+  ],
+  "forbiddenEdges": [
+    {
+      "from": "method:src/services.ts#StaticOrderService.create",
+      "to": "method:src/repositories.ts#InMemoryOrderRepository.save",
+      "type": "RESOLVES_TO"
+    },
+    {
+      "from": "method:src/services.ts#DynamicOrderService.create",
+      "to": "method:src/repositories.ts#PostgresOrderRepository.save",
+      "type": "RESOLVES_TO"
+    },
+    {
+      "from": "method:src/services.ts#DynamicOrderService.create",
+      "to": "method:src/repositories.ts#InMemoryOrderRepository.save",
+      "type": "RESOLVES_TO"
+    },
+    {
+      "from": "method:src/services.ts#DynamicOrderService.create",
+      "to": "method:src/repositories.ts#UnusedOrderRepository.save",
+      "type": "POSSIBLE_RESOLUTION"
+    },
+    {
+      "from": "method:src/services.ts#StaticOrderService.create",
+      "to": "method:src/repositories.ts#UnusedOrderRepository.save",
+      "type": "RESOLVES_TO"
+    }
+  ]
+}

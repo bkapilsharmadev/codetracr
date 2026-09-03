@@ -1,0 +1,17 @@
+{
+  "name": "@codetracr/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "jspdf": "^4.2.1",
+    "pixi.js": "8.6.6"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.2"
+  },
+  "license": "MIT"
+}

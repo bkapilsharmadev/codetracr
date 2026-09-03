@@ -1,0 +1,10 @@
+CodeTracr
+Copyright (c) 2026 CodeTracr contributors
+
+SPDX-License-Identifier: MIT
+
+This repository is licensed under the MIT License. See LICENSE.
+
+Third-party software is pulled in by npm. Each dependency keeps its own license;
+see the license file inside that package under `node_modules` after `npm install`.
+Do not assume every dependency is MIT.
