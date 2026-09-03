@@ -9,14 +9,7 @@ const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..')
 
 describe('CodeTracr JSON adapter', () => {
   it('loads the canonical Kafka graph without changing its semantic labels', () => {
-    const graphPath = join(
-      repoRoot,
-      'packages',
-      'engine',
-      'generated',
-      'kafka',
-      'codetracr-graph.json',
-    );
+    const graphPath = join(repoRoot, 'generated', 'kafka', 'codetracr-graph.json');
     const adapter = loadCodeTracrJsonAdapter(graphPath);
     assert.equal(adapter.id, 'codetracr');
 
@@ -44,14 +37,7 @@ describe('CodeTracr JSON adapter', () => {
   });
 
   it('preserves possible certainty and numeric confidence', () => {
-    const graphPath = join(
-      repoRoot,
-      'packages',
-      'engine',
-      'generated',
-      'factory',
-      'codetracr-graph.json',
-    );
+    const graphPath = join(repoRoot, 'generated', 'factory', 'codetracr-graph.json');
     const adapter = loadCodeTracrJsonAdapter(graphPath);
     const dynamic = adapter
       .search('DynamicOrderService.create')
@@ -75,17 +61,15 @@ describe('CodeTracr JSON adapter', () => {
   });
 
   it('infers the Kafka fixture source root from a generated graph path', () => {
-    const graphPath = join(
-      repoRoot,
-      'packages',
-      'engine',
-      'generated',
-      'kafka',
-      'codetracr-graph.json',
-    );
+    const graphPath = join(repoRoot, 'generated', 'kafka', 'codetracr-graph.json');
     assert.equal(
       resolveCodeTracrSourceRoot(repoRoot, graphPath),
-      join(repoRoot, 'packages', 'engine', 'kafka-poc'),
+      join(repoRoot, 'fixtures', 'kafka-poc'),
     );
+  });
+
+  it('infers the fixtures directory for the combined POC graph', () => {
+    const graphPath = join(repoRoot, 'generated', 'all', 'codetracr-graph.json');
+    assert.equal(resolveCodeTracrSourceRoot(repoRoot, graphPath), join(repoRoot, 'fixtures'));
   });
 });

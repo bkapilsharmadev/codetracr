@@ -534,8 +534,9 @@ function isAnalyzedSourceFile(name: string): boolean {
   );
 }
 
-export function parseFixture(sourceRoot: string): ParsedFile[] {
+export function parseFixture(sourceRoot: string, displayPrefix = 'src'): ParsedFile[] {
   const absoluteRoot = resolve(sourceRoot);
+  const prefix = displayPrefix.replace(/\/+$/, '');
   const files: string[] = [];
   const collect = (directory: string): void => {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
@@ -566,7 +567,7 @@ export function parseFixture(sourceRoot: string): ParsedFile[] {
   const parsed: ParsedFile[] = [];
   const skipped: string[] = [];
   for (const file of files.sort()) {
-    const displayPath = `src/${relative(absoluteRoot, file).replaceAll('\\', '/')}`;
+    const displayPath = `${prefix}/${relative(absoluteRoot, file).replaceAll('\\', '/')}`;
     try {
       parsed.push(parseFile(file, displayPath));
     } catch (error) {

@@ -5,9 +5,10 @@ import { describe, it } from 'node:test';
 import { loadFixtureGraph } from './load-fixture-graph.ts';
 import type { CodeTracrGraph } from '../src/types.ts';
 
-const root = resolve(import.meta.dirname, '..');
+import { fixturesRoot } from '../src/poc-fixtures.ts';
+
 const expected = JSON.parse(
-  readFileSync(resolve(root, 'factory-poc', 'expected-graph.json'), 'utf8'),
+  readFileSync(resolve(fixturesRoot, 'factory-poc', 'expected-graph.json'), 'utf8'),
 ) as {
   requiredEdges: Array<{
     from: string;

@@ -4,9 +4,10 @@ import { resolve } from 'node:path';
 import { describe, it } from 'node:test';
 import { loadFixtureGraph } from './load-fixture-graph.ts';
 
-const root = resolve(import.meta.dirname, '..');
+import { fixturesRoot } from '../src/poc-fixtures.ts';
+
 const expected = JSON.parse(
-  readFileSync(resolve(root, 'golden-poc', 'expected-graph.json'), 'utf8'),
+  readFileSync(resolve(fixturesRoot, 'golden-poc', 'expected-graph.json'), 'utf8'),
 ) as {
   requiredNodes: Array<{ id: string; type: string; name: string }>;
   requiredEdges: Array<{ from: string; to: string; type: string }>;

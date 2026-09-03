@@ -7,9 +7,10 @@ import { parseTypeScriptSource } from '../src/parser/treesitter.ts';
 import { loadFixtureGraph } from './load-fixture-graph.ts';
 import type { CodeTracrGraph } from '../src/types.ts';
 
-const root = resolve(import.meta.dirname, '..');
+import { fixturesRoot } from '../src/poc-fixtures.ts';
+
 const expected = JSON.parse(
-  readFileSync(resolve(root, 'kafka-poc', 'expected-graph.json'), 'utf8'),
+  readFileSync(resolve(fixturesRoot, 'kafka-poc', 'expected-graph.json'), 'utf8'),
 ) as {
   requiredNodes: Array<{ id: string; type: string }>;
   requiredEdges: Array<{ from: string; to: string; type: string }>;

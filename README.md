@@ -37,13 +37,13 @@ npm run build
 npm start
 ```
 
-Open **http://127.0.0.1:8787/ui/** and search for `OrderService.create` or `orders.created`.
+Open **http://127.0.0.1:8787/ui/** and search for `OrderService.create` or `OrderEventPublisher.publish`.
 
-`npm start` serves the last generated CodeTracr graph (Kafka fixture by default). Point it at another graph with:
+`npm start` serves the combined POC graph when present (`generated/all/codetracr-graph.json`). Point it at another graph with:
 
 ```powershell
-$env:CODETRACR_GRAPH = "packages/engine/generated/codetracr-graph.json"
-$env:CODETRACR_SOURCE_ROOT = "packages/engine/golden-poc"
+$env:CODETRACR_GRAPH = "generated/golden/codetracr-graph.json"
+$env:CODETRACR_SOURCE_ROOT = "fixtures/golden-poc"
 npm start
 ```
 
@@ -81,7 +81,7 @@ It does **not** claim complete coverage of TypeScript, React, ORMs, or job queue
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `CODETRACR_PORT` / `PORT` | `8787` | HTTP port |
-| `CODETRACR_GRAPH` | first available engine graph, starting with Kafka | Canonical CodeTracr semantic graph |
+| `CODETRACR_GRAPH` | combined POC graph, then other generated graphs | Canonical CodeTracr semantic graph |
 | `CODETRACR_SOURCE_ROOT` | inferred from the selected engine graph | Root used for CodeTracr source navigation |
 | `CODETRACR_EDITOR_SCHEME` | `vscode` | Editor URL scheme: `vscode` or `cursor` |
 

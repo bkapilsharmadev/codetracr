@@ -95,7 +95,7 @@ if (!sourceRoot || sourceRoot === resolve('') || !existsSync(sourceRoot)) {
   node --experimental-strip-types packages/engine/src/analyze.ts --source <dir> --out <dir> [--write-facts]
 
 Examples:
-  npm run analyze -- --source packages/engine/golden-poc/src --out packages/engine/generated/golden`);
+  npm run analyze -- --source fixtures/golden-poc/src --out generated/golden`);
   process.exit(1);
 }
 

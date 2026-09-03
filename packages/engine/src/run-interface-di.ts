@@ -3,16 +3,17 @@ import { resolve } from 'node:path';
 import { buildCodeTracrGraph } from './graph/codetracr-model.ts';
 import { parseFixture } from './parser/treesitter.ts';
 
-const root = resolve(import.meta.dirname, '..');
-const fixtureRoot = resolve(root, 'interface-di-poc');
+import { fixturesRoot, generatedRoot } from './poc-fixtures.ts';
+
+const fixtureRoot = resolve(fixturesRoot, 'interface-di-poc');
 const sourceRoot = resolve(fixtureRoot, 'src');
-const generatedRoot = resolve(root, 'generated', 'interface-di');
+const outRoot = resolve(generatedRoot, 'interface-di');
 
 function writeJson(name: string, value: unknown): void {
-  writeFileSync(resolve(generatedRoot, name), `${JSON.stringify(value, null, 2)}\n`);
+  writeFileSync(resolve(outRoot, name), `${JSON.stringify(value, null, 2)}\n`);
 }
 
-mkdirSync(generatedRoot, { recursive: true });
+mkdirSync(outRoot, { recursive: true });
 const parsedFiles = parseFixture(sourceRoot);
 const graph = buildCodeTracrGraph(parsedFiles);
 const nodeNames = new Map(graph.nodes.map((node) => [node.id, node.name]));

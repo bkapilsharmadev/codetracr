@@ -3,14 +3,14 @@ import { resolve } from 'node:path';
 import { parseFixture } from './parser/treesitter.ts';
 import { buildCodeTracrGraph } from './graph/codetracr-model.ts';
 import type { CodeTracrGraph } from './types.ts';
+import { fixturesRoot, generatedRoot } from './poc-fixtures.ts';
 
-const root = resolve(import.meta.dirname, '..');
-const fixtureRoot = resolve(root, 'golden-poc');
+const fixtureRoot = resolve(fixturesRoot, 'golden-poc');
 const sourceRoot = resolve(fixtureRoot, 'src');
-const generatedRoot = resolve(root, 'generated');
+const outRoot = resolve(generatedRoot, 'golden');
 
 function writeJson(name: string, value: unknown): void {
-  writeFileSync(resolve(generatedRoot, name), `${JSON.stringify(value, null, 2)}\n`);
+  writeFileSync(resolve(outRoot, name), `${JSON.stringify(value, null, 2)}\n`);
 }
 
 function provenanceReport(graph: CodeTracrGraph): unknown {
@@ -34,7 +34,7 @@ function provenanceReport(graph: CodeTracrGraph): unknown {
   };
 }
 
-mkdirSync(generatedRoot, { recursive: true });
+mkdirSync(outRoot, { recursive: true });
 const parsedFiles = parseFixture(sourceRoot);
 const graph = buildCodeTracrGraph(parsedFiles);
 

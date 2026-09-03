@@ -13,9 +13,11 @@ npm run build
 npm start
 ```
 
-Open http://127.0.0.1:8787/ui/ and search for `OrderService.create` (Fastify/SQL fixture) or `orders.created` / `OrderEventPublisher.publish` (Kafka fixture).
+Open http://127.0.0.1:8787/ui/ and search for `OrderService.create` or `OrderEventPublisher.publish`.
 
-`npm start` loads the first generated graph it finds, preferring the Kafka fixture. Build graphs first with `npm run poc` or `npm run generate`.
+`npm start` loads the combined POC graph (`generated/all/codetracr-graph.json`) when it exists. Build graphs first with `npm run poc` or `npm run generate`.
+
+POC sources are under `fixtures/` (`golden-poc`, `factory-poc`, `interface-di-poc`, `kafka-poc`). They are parsed together for the default UI graph; overlapping `src/` file names are namespaced by fixture folder so node IDs stay unique.
 
 If port 8787 is already in use:
 
@@ -47,7 +49,7 @@ npm start
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `CODETRACR_PORT` / `PORT` | `8787` | HTTP port |
-| `CODETRACR_GRAPH` | first generated engine graph, Kafka first | Path to `codetracr-graph.json` |
+| `CODETRACR_GRAPH` | combined POC graph (`generated/all`), then other generated graphs | Path to `codetracr-graph.json` |
 | `CODETRACR_SOURCE_ROOT` | inferred from the graph path for fixtures | Source root for editor links |
 | `CODETRACR_EDITOR_SCHEME` | `vscode` | `vscode` or `cursor` editor URL scheme |
 

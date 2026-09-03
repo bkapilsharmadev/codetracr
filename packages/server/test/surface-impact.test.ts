@@ -10,7 +10,7 @@ const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..')
 describe('surface impact (CodeTracr semantic graph)', () => {
   it('returns HTTP and table buckets from golden semantic nodes', () => {
     const adapter = loadCodeTracrJsonAdapter(
-      join(repoRoot, 'packages', 'engine', 'generated', 'codetracr-graph.json'),
+      join(repoRoot, 'generated', 'golden', 'codetracr-graph.json'),
     );
     const target = adapter.search('OrderService.create').find((n) => n.label === 'OrderService.create');
     assert.ok(target);
@@ -22,7 +22,7 @@ describe('surface impact (CodeTracr semantic graph)', () => {
 
   it('returns Kafka publish/consume buckets from topic lineage', () => {
     const adapter = loadCodeTracrJsonAdapter(
-      join(repoRoot, 'packages', 'engine', 'generated', 'kafka', 'codetracr-graph.json'),
+      join(repoRoot, 'generated', 'kafka', 'codetracr-graph.json'),
     );
     const topic = adapter.search('orders.created').find((n) => n.label === 'orders.created');
     assert.ok(topic);
@@ -35,7 +35,7 @@ describe('surface impact (CodeTracr semantic graph)', () => {
 describe('path ranking', () => {
   it('prefers upstream path through route files when available', () => {
     const adapter = loadCodeTracrJsonAdapter(
-      join(repoRoot, 'packages', 'engine', 'generated', 'codetracr-graph.json'),
+      join(repoRoot, 'generated', 'golden', 'codetracr-graph.json'),
     );
     const target = adapter.search('OrderService.create').find((n) => n.label === 'OrderService.create');
     assert.ok(target);

@@ -12,8 +12,9 @@
     "build:di": "node --experimental-strip-types src/run-interface-di.ts",
     "build:factory": "node --experimental-strip-types src/run-factory.ts",
     "build:kafka": "node --experimental-strip-types src/run-kafka.ts",
+    "build:all": "node --experimental-strip-types src/run-all-pocs.ts",
     "test": "node --experimental-strip-types --test test/*.test.ts",
-    "generate": "npm run build && npm run build:di && npm run build:factory && npm run build:kafka",
+    "generate": "npm run build && npm run build:di && npm run build:factory && npm run build:kafka && npm run build:all",
     "poc": "npm run generate && npm test",
     "typecheck": "tsc --noEmit"
   },

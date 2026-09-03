@@ -1,4 +1,4 @@
-# CodeTracr semantic graph fixtures
+# CodeTracr semantic graph engine
 
 This package (`@codetracr/engine`) is the CodeTracr semantic analyzer:
 Tree-sitter AST facts + fail-closed symbol resolution and semantic passes.
@@ -15,14 +15,7 @@ npm install
 npm run poc
 ```
 
-`npm run poc` builds all fixture graphs and executes golden tests.
-Generated files are written to `packages/engine/generated/` (gitignored).
+`npm run poc` builds fixture graphs (including the combined POC graph) and executes tests.
+Generated files are written to `generated/` at the repository root (gitignored).
 
-## Fixtures
-
-| Fixture | Focus |
-|---------|-------|
-| `golden-poc/` | Fastify HTTP + SQL writes |
-| `interface-di-poc/` | Interfaces and constructor injection |
-| `factory-poc/` | Definite vs possible factory resolution |
-| `kafka-poc/` | Publisher → topic → consumer |
+POC source lives in [`fixtures/`](../../fixtures/README.md).

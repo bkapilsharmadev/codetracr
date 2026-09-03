@@ -14,18 +14,10 @@ npm run poc
 ```
 
 `npm run poc` builds all reports and executes the golden tests.
-Generated files are written to `packages/engine/generated/`:
+Generated files are written to `generated/golden/` at the repository root.
 
-- `treesitter-facts.json`
-- `codetracr-graph.json`
-- `provenance-report.json`
-
-The same command also runs the separate interface/DI fixture. Its reports are
-under `packages/engine/generated/interface-di/`; see `interface-di-poc/README.md`.
-It also runs the conditional factory fixture, whose reports are under
-`packages/engine/generated/factory/`; see `factory-poc/README.md`.
-The Kafka event-flow fixture writes to `packages/engine/generated/kafka/`; see
-`kafka-poc/README.md`.
+The same command also builds the other POC graphs under `generated/interface-di/`,
+`generated/factory/`, `generated/kafka/`, and the combined graph at `generated/all/`.
 
 ## Results for this fixture
 

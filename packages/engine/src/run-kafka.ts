@@ -3,15 +3,16 @@ import { resolve } from 'node:path';
 import { buildCodeTracrGraph } from './graph/codetracr-model.ts';
 import { parseFixture } from './parser/treesitter.ts';
 
-const root = resolve(import.meta.dirname, '..');
-const sourceRoot = resolve(root, 'kafka-poc', 'src');
-const generatedRoot = resolve(root, 'generated', 'kafka');
+import { fixturesRoot, generatedRoot } from './poc-fixtures.ts';
+
+const sourceRoot = resolve(fixturesRoot, 'kafka-poc', 'src');
+const outRoot = resolve(generatedRoot, 'kafka');
 
 function writeJson(name: string, value: unknown): void {
-  writeFileSync(resolve(generatedRoot, name), `${JSON.stringify(value, null, 2)}\n`);
+  writeFileSync(resolve(outRoot, name), `${JSON.stringify(value, null, 2)}\n`);
 }
 
-mkdirSync(generatedRoot, { recursive: true });
+mkdirSync(outRoot, { recursive: true });
 const parsedFiles = parseFixture(sourceRoot);
 const graph = buildCodeTracrGraph(parsedFiles);
 const nodeNames = new Map(graph.nodes.map((node) => [node.id, node.name]));
