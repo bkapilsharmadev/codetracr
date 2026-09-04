@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/types.ts"
+    ".": "./src/types.ts",
+    "./graph": "./src/graph/analysis.ts"
   },
   "scripts": {
     "analyze": "node --experimental-strip-types src/analyze.ts",

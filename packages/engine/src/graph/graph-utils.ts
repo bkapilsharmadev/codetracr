@@ -1,4 +1,4 @@
-import type { GraphNode } from './types.ts';
+import type { GraphNode } from './query-model.ts';
 
 export const UNLIMITED_DEPTH = 0;
 

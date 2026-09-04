@@ -1,4 +1,4 @@
-import type { GraphEdge, GraphNode } from './types.ts';
+import type { GraphEdge, GraphNode } from './query-model.ts';
 import { isNoiseNode, UNLIMITED_DEPTH } from './graph-utils.ts';
 
 export { UNLIMITED_DEPTH } from './graph-utils.ts';

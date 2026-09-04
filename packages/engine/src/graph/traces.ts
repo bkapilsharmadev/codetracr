@@ -1,4 +1,4 @@
-import type { GraphEdge, GraphNode } from './types.ts';
+import type { GraphEdge, GraphNode } from './query-model.ts';
 import { formatNodeLabel, isNoiseNode, UNLIMITED_DEPTH } from './graph-utils.ts';
 import { scorePathLabels } from './path-ranking.ts';
 

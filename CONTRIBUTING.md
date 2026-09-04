@@ -18,8 +18,8 @@ There is no ESLint/Prettier config in this repository yet.
 
 ## Project layout
 
-- `packages/engine` — Tree-sitter parse, symbol resolution, semantic analyzers, CodeTracr graph
-- `packages/server` — HTTP API, lineage/traces, blast radius
+- `packages/engine` — parse, resolution, semantic analyzers, graph model, lineage/traces/surface-impact
+- `packages/server` — Fastify HTTP, GraphService, JSON graph store
 - `packages/web` — HTML/CSS/JS UI (Pixi lineage / flow / sequence)
 - `fixtures/` — POC source trees (golden, factory, DI, Kafka)
 

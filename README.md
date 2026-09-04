@@ -99,6 +99,7 @@ It does **not** claim complete coverage of TypeScript, React, ORMs, or job queue
 
 ## Documentation
 
+- [Learning guide](docs/learning-guide.md) — concepts, graph basics, end-to-end examples
 - [Getting started](docs/getting-started.md)
 - [Architecture](docs/architecture.md)
 - [HTTP API](docs/api.md)

@@ -1,4 +1,4 @@
-import type { GraphNode } from './types.ts';
+import type { GraphNode } from './query-model.ts';
 import type { LineagePath } from './lineage.ts';
 import { plainLabel } from './graph-utils.ts';
 

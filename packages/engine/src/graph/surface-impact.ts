@@ -1,4 +1,4 @@
-import type { GraphEdge, GraphNode, SurfaceImpactResult } from './types.ts';
+import type { GraphEdge, GraphNode, SurfaceImpactResult } from './query-model.ts';
 import { buildLineageGraph, UNLIMITED_DEPTH, type LineageGraph } from './lineage.ts';
 
 function displayName(node: GraphNode | undefined): string {

@@ -2,52 +2,46 @@ import assert from 'node:assert/strict';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, it } from 'node:test';
-import { loadCodeTracrJsonAdapter } from '../src/adapters/codetracr-json.ts';
+import { JsonGraphRepository } from '../src/adapters/persistence/json/JsonGraphRepository.ts';
+import { GraphService } from '../src/application/graph-service.ts';
 import { resolveCodeTracrSourceRoot } from '../src/paths.ts';
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 
-describe('CodeTracr JSON adapter', () => {
-  it('loads the canonical Kafka graph without changing its semantic labels', () => {
-    const graphPath = join(repoRoot, 'generated', 'kafka', 'codetracr-graph.json');
-    const adapter = loadCodeTracrJsonAdapter(graphPath);
-    assert.equal(adapter.id, 'codetracr');
+function serviceFrom(graphRel: string) {
+  const graphPath = join(repoRoot, ...graphRel.split('/'));
+  return new GraphService(JsonGraphRepository.load(graphPath));
+}
 
-    const topic = adapter.search('orders.created').find((node) => node.label === 'orders.created');
+describe('CodeTracr JSON repository', () => {
+  it('loads the canonical Kafka graph without changing its semantic labels', async () => {
+    const graph = serviceFrom('generated/kafka/codetracr-graph.json');
+    assert.equal(graph.analyzerId, 'codetracr');
+
+    const topic = (await graph.search('orders.created')).find((node) => node.label === 'orders.created');
     assert.ok(topic);
     assert.equal(topic.kind, 'event_topic');
 
-    const lineage = adapter.lineage(topic.id, 10);
+    const lineage = await graph.lineage(topic.id, 10);
     assert.ok(
-      lineage.edges.some(
-        (edge) => edge.relation === 'PUBLISHES' && edge.to === topic.id,
-      ),
+      lineage.edges.some((edge) => edge.relation === 'PUBLISHES' && edge.to === topic.id),
     );
     assert.ok(
-      lineage.edges.some(
-        (edge) => edge.relation === 'CONSUMED_BY' && edge.from === topic.id,
-      ),
+      lineage.edges.some((edge) => edge.relation === 'CONSUMED_BY' && edge.from === topic.id),
     );
-    assert.ok(
-      lineage.nodes.some((node) => node.label === 'OrderEventPublisher.publish'),
-    );
-    assert.ok(
-      lineage.nodes.some((node) => node.label === 'OrderCreatedConsumer.handle'),
-    );
+    assert.ok(lineage.nodes.some((node) => node.label === 'OrderEventPublisher.publish'));
+    assert.ok(lineage.nodes.some((node) => node.label === 'OrderCreatedConsumer.handle'));
   });
 
-  it('preserves possible certainty and numeric confidence', () => {
-    const graphPath = join(repoRoot, 'generated', 'factory', 'codetracr-graph.json');
-    const adapter = loadCodeTracrJsonAdapter(graphPath);
-    const dynamic = adapter
-      .search('DynamicOrderService.create')
-      .find((node) => node.label === 'DynamicOrderService.create');
+  it('preserves possible certainty and numeric confidence', async () => {
+    const graph = serviceFrom('generated/factory/codetracr-graph.json');
+    const dynamic = (await graph.search('DynamicOrderService.create')).find(
+      (node) => node.label === 'DynamicOrderService.create',
+    );
     assert.ok(dynamic);
 
-    const lineage = adapter.lineage(dynamic.id, 10);
-    const possible = lineage.edges.filter(
-      (edge) => edge.relation === 'POSSIBLE_RESOLUTION',
-    );
+    const lineage = await graph.lineage(dynamic.id, 10);
+    const possible = lineage.edges.filter((edge) => edge.relation === 'POSSIBLE_RESOLUTION');
     assert.equal(possible.length, 2);
     assert.ok(
       possible.every(

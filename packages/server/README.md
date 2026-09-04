@@ -1,8 +1,8 @@
 # `@codetracr/server`
 
-Local HTTP API and static UI host for a CodeTracr graph.
+Fastify adapter around `@codetracr/engine` graph analysis. It does not parse source.
 
-It does not parse source. It reads `codetracr-graph.json` produced by `@codetracr/engine`.
+Graph JSON is loaded through `JsonGraphRepository`. Routes depend on `GraphService` and the `GraphRepository` port, not files.
 
 ```powershell
 npm run generate

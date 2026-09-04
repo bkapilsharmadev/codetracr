@@ -4,24 +4,26 @@
 
 | Package | Role |
 |---------|------|
-| `@codetracr/engine` | Semantic analyzer: Tree-sitter AST → fail-closed CodeTracr graph JSON |
-| `@codetracr/server` | HTTP API, lineage/traces, semantic blast-radius |
+| `@codetracr/engine` | Core: Tree-sitter facts, resolution, semantic rules, graph construction, lineage/traces/surface-impact |
+| `@codetracr/server` | Application + adapters: Fastify HTTP, `GraphService`, `GraphRepository` (JSON today) |
 | `@codetracr/web` | Static UI: sidebar traces + Pixi lineage / flow / sequence |
 
-The engine does not import the UI. The server loads a graph file; it does not re-parse source.
+The engine does not import the UI or HTTP stack. The server does not re-parse source.
 
 ## Data flow
 
 ```text
 source tree
         ↓
-Tree-sitter facts
-        ↓
-symbol resolver + semantic rules
+engine: parser → resolver → semantic rules → graph model
         ↓
 codetracr-graph.json
         ↓
-server graph model → search / lineage / UI
+server: JSON adapter → GraphRepository → GraphService
+        ↓
+engine: lineage / traces / surface-impact
+        ↓
+Fastify HTTP → UI
 ```
 
 The graph is owned and constructed by CodeTracr. There is no Graphify (or other external graph) backend.

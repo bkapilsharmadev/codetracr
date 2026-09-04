@@ -4,5 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": { "typecheck": "tsc --noEmit", "start": "node --experimental-strip-types src/server.ts" },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@codetracr/engine": "*",
+    "fastify": "^5.6.0"
+  }
 }

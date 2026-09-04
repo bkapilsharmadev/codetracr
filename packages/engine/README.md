@@ -1,7 +1,7 @@
 # CodeTracr semantic graph engine
 
-This package (`@codetracr/engine`) is the CodeTracr semantic analyzer:
-Tree-sitter AST facts + fail-closed symbol resolution and semantic passes.
+This package (`@codetracr/engine`) is the CodeTracr core:
+Tree-sitter AST facts, fail-closed symbol resolution, semantic passes, and graph-analysis algorithms (lineage, traces, surface impact).
 
 It can be used without the web UI (`npm run analyze -- --source <dir> --out <dir>` from the repo root).
 License: MIT (see the repository `LICENSE`).
