@@ -1,0 +1,52 @@
+---
+import { homepage } from "../data/siteCopy";
+---
+
+<section id="how" class="px-4 py-8 sm:px-6 lg:px-8 pb-20">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted mb-3">{homepage.how.eyebrow}</p>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-ink mb-10">{homepage.how.title}</h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {homepage.how.steps.map((step, i) => (
+        <article class="relative rounded-2xl border border-line bg-white p-6">
+          <div class="flex items-center justify-between mb-5">
+            <span class="flex h-7 w-7 items-center justify-center rounded-full border border-ink text-[12px] font-bold">
+              {i + 1}
+            </span>
+            {step.icon === "parse" && (
+              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <circle cx="7" cy="6" r="1.4" fill="currentColor" stroke="none"/>
+                <circle cx="7" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+                <circle cx="7" cy="18" r="1.4" fill="currentColor" stroke="none"/>
+                <path stroke-linecap="round" stroke-width="1.7" d="M11 6h9M11 12h9M11 18h9"/>
+              </svg>
+            )}
+            {step.icon === "graph" && (
+              <svg class="h-7 w-7 text-icon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <circle cx="12" cy="6" r="2" stroke-width="1.7"/>
+                <circle cx="6" cy="18" r="2" stroke-width="1.7"/>
+                <circle cx="18" cy="18" r="2" stroke-width="1.7"/>
+                <path stroke-width="1.7" d="M12 8v6M10.4 15.2L7.6 16.8M13.6 15.2l2.8 1.6"/>
+              </svg>
+            )}
+            {step.icon === "query" && (
+              <svg class="h-7 w-7 text-icon-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5" stroke-width="1.7"/>
+                <path stroke-linecap="round" stroke-width="1.7" d="M16 16l4.5 4.5"/>
+              </svg>
+            )}
+            {step.icon === "confidence" && (
+              <svg class="h-7 w-7 text-icon-rose" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M12 3l7 4v5c0 4.4-3.1 7.2-7 8.8-3.9-1.6-7-4.4-7-8.8V7l7-4z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M9 12l2 2 4-4"/>
+              </svg>
+            )}
+          </div>
+          <h3 class="text-[15px] font-bold text-ink">{step.title}</h3>
+          <p class="mt-2 text-sm text-muted leading-relaxed">{step.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

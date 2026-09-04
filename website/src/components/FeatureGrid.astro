@@ -1,0 +1,38 @@
+---
+import { homepage } from "../data/siteCopy";
+---
+
+<section id="capabilities" class="px-4 sm:px-6 lg:px-8 pb-8">
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {homepage.features.items.map((item) => (
+      <article class="rounded-2xl border border-line bg-white p-6">
+        <div class="mb-4">
+          {item.icon === "blast" && (
+            <svg class="h-8 w-8 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <circle cx="12" cy="12" r="2.5" stroke-width="1.7"/>
+              <path stroke-linecap="round" stroke-width="1.7" d="M12 4v2M12 18v2M4 12h2M18 12h2M6.3 6.3l1.5 1.5M16.2 16.2l1.5 1.5M6.3 17.7l1.5-1.5M16.2 7.8l1.5-1.5"/>
+            </svg>
+          )}
+          {item.icon === "lineage" && (
+            <svg class="h-8 w-8 text-icon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M4 8l8-4 8 4-8 4-8-4zM4 12l8 4 8-4M4 16l8 4 8-4"/>
+            </svg>
+          )}
+          {item.icon === "flow" && (
+            <svg class="h-8 w-8 text-icon-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M4 8h10m0 0l-3-3m3 3l-3 3M10 16h10m0 0l-3-3m3 3l-3 3"/>
+            </svg>
+          )}
+          {item.icon === "source" && (
+            <svg class="h-8 w-8 text-icon-rose" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M12 3l7 4v5c0 4.4-3.1 7.2-7 8.8-3.9-1.6-7-4.4-7-8.8V7l7-4z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M9 12l2 2 4-4"/>
+            </svg>
+          )}
+        </div>
+        <h3 class="text-[15px] font-bold text-ink">{item.title}</h3>
+        <p class="mt-1.5 text-sm text-muted leading-relaxed">{item.description}</p>
+      </article>
+    ))}
+  </div>
+</section>

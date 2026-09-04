@@ -1,0 +1,49 @@
+---
+const graph = [
+  { kind: "route", label: "POST /api/v1/orders", edge: "HANDLES" },
+  { kind: "fn", label: "OrderController.create", edge: "CALLS" },
+  { kind: "here", label: "OrderService.create", edge: "CALLS" },
+  { kind: "fn", label: "OrderRepository.save", edge: "WRITES" },
+  { kind: "table", label: "orders", edge: null },
+] as const;
+---
+
+<div class="relative w-max min-w-[340px] max-w-full shrink-0 pt-8" id="hero-trace">
+  <p class="note absolute -top-7 right-2 text-[22px] text-neutral-400 rotate-[6deg] pointer-events-none">
+    From change to real impact
+  </p>
+
+  <div class="relative rounded-2xl bg-white px-6 py-6 shadow-[0_16px_50px_rgba(0,0,0,0.08)] ring-1 ring-black/10">
+    <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-400 mb-4">If I change this…</p>
+    <ol>
+      {graph.map((node) => (
+        <li>
+          <div class:list={[
+            "flex items-center gap-3 rounded-xl px-3.5 py-2.5 ring-1",
+            node.kind === "here" ? "bg-brand/[0.07] ring-brand/20" : "bg-white ring-line",
+          ]}>
+            <span class:list={[
+              "h-2 w-2 rounded-full shrink-0",
+              node.kind === "here" && "bg-brand",
+              node.kind === "table" && "bg-icon-teal",
+              node.kind === "route" && "bg-icon-rose",
+              node.kind === "fn" && "bg-neutral-400",
+            ]}></span>
+            <span class="text-[13px] font-medium font-mono tracking-tight text-ink whitespace-nowrap">
+              {node.label}
+            </span>
+            {node.kind === "here" && (
+              <span class="ml-auto text-[10px] font-bold uppercase tracking-[0.14em] text-brand">you</span>
+            )}
+          </div>
+          {node.edge && (
+            <div class="grid grid-cols-[14px_1fr] items-center h-7">
+              <span class="justify-self-center w-px h-full bg-line"></span>
+              <span class="text-[10px] font-semibold uppercase tracking-[0.16em] text-neutral-400 pl-1">{node.edge}</span>
+            </div>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</div>

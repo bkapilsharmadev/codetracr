@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "CodeTracr | See what a change actually touches",
+  description = "CodeTracr is a deterministic code impact analyzer. It builds a semantic graph from source and shows lineage, blast radius, and traces in the browser.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://codetracr.com/" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://codetracr.com/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-canvas text-ink antialiased flex min-h-screen flex-col selection:bg-ink selection:text-white">
+    <slot />
+  </body>
+</html>

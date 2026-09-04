@@ -3,6 +3,7 @@
 | Document | Contents |
 |----------|----------|
 | [Learning guide](learning-guide.md) | Full walkthrough: graphs, pipeline, examples, diagrams |
+| [Mini-POC: Tree-sitter → graph](mini-poc-engine.md) | Hands-on lab: handwrite facts → resolve → CALLS edge |
 | [Getting started](getting-started.md) | Install, fixtures, analyze a tree, run the UI |
 | [Architecture](architecture.md) | Packages, pipeline, graph ownership |
 | [HTTP API](api.md) | Local server endpoints |

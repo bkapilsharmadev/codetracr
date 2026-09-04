@@ -1,0 +1,4 @@
+Contact: https://github.com/bkapilsharmadev/codetracr/security/advisories/new
+Expires: 2027-09-04T23:59:59Z
+Preferred-Languages: en
+Canonical: https://codetracr.com/.well-known/security.txt

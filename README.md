@@ -6,7 +6,7 @@ CodeTracr parses source with Tree-sitter, resolves symbols, applies fail-closed 
 
 **Status:** public beta **0.1.0**. Static analysis is incomplete by design: if a relationship cannot be proved from source, it is left unresolved rather than guessed.
 
-**Website:** [codetracr.com](https://codetracr.com) (coming soon)
+**Website:** [codetracr.com](https://codetracr.com)
 
 ## Architecture
 
@@ -100,6 +100,7 @@ It does **not** claim complete coverage of TypeScript, React, ORMs, or job queue
 ## Documentation
 
 - [Learning guide](docs/learning-guide.md) — concepts, graph basics, end-to-end examples
+- [Mini-POC lab](docs/mini-poc-engine.md) — handwrite Tree-sitter facts → CALLS graph
 - [Getting started](docs/getting-started.md)
 - [Architecture](docs/architecture.md)
 - [HTTP API](docs/api.md)
@@ -111,3 +112,5 @@ It does **not** claim complete coverage of TypeScript, React, ORMs, or job queue
 ## License
 
 MIT — see [LICENSE](LICENSE). Third-party npm packages keep their own licenses; see [NOTICE](NOTICE).
+
+The public site lives in [`website/`](website/README.md) and deploys to Cloudflare Pages.

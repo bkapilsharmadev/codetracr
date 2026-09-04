@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #5b4bdb;
+  --color-ink: #111111;
+  --color-canvas: #ffffff;
+  --color-wash: #f6f6f6;
+  --color-line: #e8e8e8;
+  --color-muted: #737373;
+  --color-icon-teal: #0f766e;
+  --color-icon-amber: #c2410c;
+  --color-icon-rose: #be123c;
+}
+
+:root {
+  color-scheme: light;
+  --header-h: 4.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 0.75rem);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #fff;
+  color: #111;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.03em;
+}
+
+a {
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.note {
+  font-family: "Caveat", cursive;
+}

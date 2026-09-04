@@ -776,13 +776,14 @@ UI searches that teach the system:
 
 1. Run `npm run poc && npm run build && npm start`.  
 2. In the UI, search **`OrderService.create`** — switch Lineage / Flow / Sequence.  
-3. Open `generated/golden/codetracr-graph.json` and find that method’s edges by hand.  
-4. Read `fixtures/golden-poc/expected-graph.json` — required vs forbidden.  
-5. Read `packages/engine/src/graph/codetracr-model.ts` top-to-bottom once (build pipeline).  
-6. Read `packages/engine/src/graph/lineage.ts` — hop walk.  
-7. Read `packages/server/src/application/graph-service.ts` — how storage + engine meet.  
-8. Search **`OrderEventPublisher.publish`** — understand `async` + `CONSUMED_BY`.  
-9. Skim `packages/server/src/ports/GraphRepository.ts` — future DB boundary.  
+3. **Optional but highly recommended:** do the handwritten lab in [Mini-POC: Tree-sitter → graph](mini-poc-engine.md) before reading more engine code.  
+4. Open `generated/golden/codetracr-graph.json` and find that method’s edges by hand.  
+5. Read `fixtures/golden-poc/expected-graph.json` — required vs forbidden.  
+6. Read `packages/engine/src/graph/codetracr-model.ts` top-to-bottom once (build pipeline).  
+7. Read `packages/engine/src/graph/lineage.ts` — hop walk.  
+8. Read `packages/server/src/application/graph-service.ts` — how storage + engine meet.  
+9. Search **`OrderEventPublisher.publish`** — understand `async` + `CONSUMED_BY`.  
+10. Skim `packages/server/src/ports/GraphRepository.ts` — future DB boundary.  
 
 When something in the UI looks “missing,” ask in this order:
 

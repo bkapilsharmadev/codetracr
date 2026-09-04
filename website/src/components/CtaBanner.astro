@@ -1,0 +1,33 @@
+---
+import Button from "./Button.astro";
+import { homepage } from "../data/siteCopy";
+---
+
+<section id="open-source" class="px-4 sm:px-6 lg:px-8 pb-20">
+  <div class="max-w-6xl mx-auto rounded-3xl bg-wash px-8 py-14 sm:px-12 text-center">
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-ink max-w-2xl mx-auto leading-tight">
+      {homepage.cta.title}
+    </h2>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <Button href={homepage.cta.primaryCta.href}>
+        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.82.58A12.01 12.01 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        {homepage.cta.primaryCta.label}
+      </Button>
+      <Button href={homepage.cta.secondaryCta.href} variant="secondary">
+        {homepage.cta.secondaryCta.label} <span aria-hidden="true">→</span>
+      </Button>
+    </div>
+    <ul class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-neutral-600">
+      {homepage.cta.signals.map((signal) => (
+        <li class="inline-flex items-center gap-1.5">
+          <svg class="h-4 w-4 text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          {signal}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import WhySection from "../components/WhySection.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import CtaBanner from "../components/CtaBanner.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+
+---
+
+<Layout>
+  <Header />
+  <main class="flex-grow">
+    <Hero />
+    <FeatureGrid />
+    <WhySection />
+    <HowItWorks />
+    <CtaBanner />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>
